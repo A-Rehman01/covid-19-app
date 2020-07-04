@@ -13,7 +13,7 @@ import Corona from './Components/Corona';
 function App() {
   const [value, setValue] = useState(0);
   
-  if(value==0){
+  if(value===0){
   return(
     
     <GlobalcontextProvider >

@@ -64,7 +64,7 @@ export default function Country({ countryName }) {
 
   //if data is not fetch
   
-  if ((apidatacountryspec==''))  {
+  if ((apidatacountryspec===''))  {
     return (
       <div>
         <Grid container >

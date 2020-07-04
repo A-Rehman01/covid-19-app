@@ -53,7 +53,7 @@ export default function World() {
     date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
 
 //if data is not fetched
-  if (apidata == '') {
+  if (apidata === '') {
     return (
       <div className={classes.root}>
         <h1 className="heading">Global</h1>

@@ -19,7 +19,7 @@ function Flag({countryName}){
     
     return(
         <div>
-                <img src={flag} width={100} height={70}></img>
+                <img src={flag} width={100} height={70} alt="Flag"></img>
         </div>
     );
 }
