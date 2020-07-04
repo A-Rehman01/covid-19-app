@@ -31,6 +31,10 @@ jobs:
       with:
         cmd: install 
       
+      
+    - name: install pakege
+      run: Yar add  eslint-cli
+      
     - name: Build covid-19 App
       run: yarn build
       
