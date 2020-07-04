@@ -30,11 +30,7 @@ jobs:
       uses: borales/actions-yarn@v2.0.0
       with:
         cmd: install 
-      
-      
-    - name: install pakege
-      run: npm install --save-dev eslint
-      
+
     - name: Build covid-19 App
       run: yarn build
       
