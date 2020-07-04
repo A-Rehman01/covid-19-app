@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 import image from '../image/covid.png';
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,7 @@ export default function Header() {
                         Covid-19
                      </Typography>
                     <img src={image} width='35' height='35'  ></img>
+                    <a href='https://github.com/A-Rehman01/covid-19-app' target='_blank' ><GitHubIcon style={{fontSize:32,color:'white', marginLeft:15}}/></a>
                 </Toolbar>
             </AppBar>
         </div>

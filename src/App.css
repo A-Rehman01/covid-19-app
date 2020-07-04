@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+
+
+.safty{
+    padding: 10px 30px;
+    text-align: center;
+    color: gray;
+}
+.corona{
+    padding: 10px 30px;
+    text-align: center;
+    color: gray;
+}
+.heading{
+    color: red;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 3px black;
+    margin: 10 0;
+    display: flex;
+    justify-content: center;
+}
+/* .icon{
+    color: white;
+    font-size: 300px;
+} */
+.top{
+    margin-top: 80px;
+}
+
+/* CountryCharts Stsrt */
+
+.countrycharts{
+    
+    max-width: 500px;
+    height: 210px;
+    margin: 0 auto;
+}
+.grapheading{
+    color: red;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 3px black;
+    margin-top: 20px;
+}
+/* CountryCharts End */
+
+
+/* WorldCharts Start */
+
+.worldcharts{   
+    max-width: 500px;
+    height: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+/* WorldCharts End */

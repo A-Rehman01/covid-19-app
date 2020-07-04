@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -10,19 +10,22 @@ import NumberFormat from 'react-number-format';
 
 
 //import component
-import Countrychart from './Countrychart';
+import { Globalcontext } from '../Global/Globalcontext';
+import Worldchart from './Worldchart';
 import Progressbar from './Progressbar'
-
 const useStyles = makeStyles((theme) => ({
   root: {
+    // flexGrow: 10,
+    // display:'flex',
   },
   paper: {
     textAlign: 'center',
+    display: 'flex',
+    flexWrap: 'wrap',
     margin: 10,
     color: theme.palette.text.secondary,
     marginTop: 20,
-    padding: 10,
-
+    padding: 10
   },
 }));
 
@@ -36,134 +39,115 @@ const useStylestypegrapgy = makeStyles({
 });
 
 
-
-export default function Country({ countryName }) {
-
-  //useEffectforSpecificCountryData
-  const [apidatacountryspec, setapiDatacountryspec] = useState('');
-    
-  useEffect(() => {
-    async function FetchSpecdata() {
-
-
-      //specific
-      let specificcounrtyresponse = await fetch('https://corona.lmao.ninja/v2/countries/' + countryName + '?yesterday&strict&query%20');
-      let countspecdata = await specificcounrtyresponse.json();
-      setapiDatacountryspec(countspecdata);
-    }
-    FetchSpecdata();
-  }, [countryName]);
-
-  // console.log(apidatacountryspec.population)
+export default function World() {
   const classes = useStyles();
+
   const classestype = useStylestypegrapgy();
+
+
+  //use context
+  let { apidata } = useContext(Globalcontext);
 
   //date
   var today = new Date(),
     date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
 
-  //if data is not fetch
-  
-  if ((apidatacountryspec==''))  {
+//if data is not fetched
+  if (apidata == '') {
     return (
-      <div>
+      <div className={classes.root}>
+        <h1 className="heading">Global</h1>
         <Grid container >
-
+        
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper} style={{ borderBottom: '2px solid orange', boxShadow: '2px 2px 5px orange' }}>
-
+            <Paper className={classes.paper} style={{ borderBottom: '2px solid orange',boxShadow:'2px 2px 5px orange' }}>
+  
               <div className={classestype.root}>
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'orange' }}>
                   <NotificationsIcon style={{ fontSize: 40 }} />
                 </Typography>
                 <Typography variant="h5" gutterBottom style={{ color: 'orange', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-
-                  <Progressbar />
+                <Progressbar/>
                 </Typography>
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'orange', fontSize: 16, fontFamily: 'Merriweather ' }}>
                   TOTAL INFECTED
-             </Typography>
-                <Typography variant="button" display="block" gutterBottom style={{ color: 'orange' }}>
+              </Typography>
+                <Typography variant="button" display="block" gutterBottom style={{ color: 'orange'}}>
                   {date}
                 </Typography>
               </div>
-
+  
             </Paper>
           </Grid>
-
+  
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper} style={{ borderBottom: '2px solid green', boxShadow: '2px 2px 5px green' }}>
-
+            <Paper className={classes.paper} style={{ borderBottom: '2px solid green',boxShadow:'2px 2px 5px green' }}>
+  
               <div className={classestype.root}>
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'green' }}>
                   <FavoriteIcon style={{ fontSize: 40 }} />
                 </Typography>
-                <Typography variant="h5" gutterBottom style={{ color: 'green', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-                  <Progressbar />
+                <Typography variant="h5" gutterBottom style={{ color: 'green', fontWeight: 'bolder' , fontFamily: 'Roboto Slab'}}>
+                <Progressbar/>
                 </Typography>
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'green', fontSize: 16, fontFamily: 'Merriweather ' }}>
                   TOTAL RECOVERED
-             </Typography>
-                <Typography variant="button" display="block" gutterBottom style={{ color: 'green' }}>
+              </Typography>
+                <Typography variant="button" display="block" gutterBottom style={{ color: 'green'}}>
                   {date}
                 </Typography>
               </div>
-
+  
             </Paper>
           </Grid>
-
+  
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper} style={{ borderBottom: '2px solid red', boxShadow: '2px 2px 5px red' }}>
-
+            <Paper className={classes.paper} style={{ borderBottom: '2px solid red',boxShadow:'2px 2px 5px red' }}>
+  
               <div className={classestype.root}>
-
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'red' }}>
                   <LocalHotelIcon style={{ fontSize: 40 }} />
                 </Typography>
-                <Typography variant="h5" gutterBottom style={{ color: 'red', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-                  <Progressbar />
+                <Typography variant="h5" gutterBottom style={{ color: 'red', fontWeight: 'bolder' , fontFamily: 'Roboto Slab'}}>
+                <Progressbar/>
                 </Typography>
                 <Typography variant="subtitle2" gutterBottom style={{ color: 'red', fontSize: 16, fontFamily: 'Merriweather ' }}>
                   TOTAL DEATH
-             </Typography>
-                <Typography variant="button" display="block" gutterBottom style={{ color: 'red' }}>
+              </Typography>
+                <Typography variant="button" display="block" gutterBottom style={{ color: 'red'}}>
                   {date}
                 </Typography>
               </div>
-
+  
             </Paper>
           </Grid>
-
+  
         </Grid>
-
-        <h2 className="grapheading">Graphical View</h2>
-        <Progressbar />
-
+        <Worldchart/>
       </div>
     );
   }
 
 
   return (
-    <div>
+    <div className={classes.root}>
+      <h1 className="heading">Global</h1>
       <Grid container >
-
+      
         <Grid item xs={12} sm={4}>
-          <Paper className={classes.paper} style={{ borderBottom: '2px solid orange', boxShadow: '2px 2px 5px orange' }}>
+          <Paper className={classes.paper} style={{ borderBottom: '2px solid orange',boxShadow:'2px 2px 5px orange' }}>
 
             <div className={classestype.root}>
               <Typography variant="subtitle2" gutterBottom style={{ color: 'orange' }}>
                 <NotificationsIcon style={{ fontSize: 40 }} />
               </Typography>
               <Typography variant="h5" gutterBottom style={{ color: 'orange', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-
-                <NumberFormat value={apidatacountryspec.cases} displayType={'text'} thousandSeparator={true} />
-
+              <NumberFormat value=  {apidata.total_cases} displayType={'text'} thousandSeparator={true} />
               </Typography>
               <Typography variant="subtitle2" gutterBottom style={{ color: 'orange', fontSize: 16, fontFamily: 'Merriweather ' }}>
                 TOTAL INFECTED
             </Typography>
-              <Typography variant="button" display="block" gutterBottom style={{ color: 'orange' }}>
+              <Typography variant="button" display="block" gutterBottom style={{ color: 'orange'}}>
                 {date}
               </Typography>
             </div>
@@ -172,19 +156,19 @@ export default function Country({ countryName }) {
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          <Paper className={classes.paper} style={{ borderBottom: '2px solid green', boxShadow: '2px 2px 5px green' }}>
+          <Paper className={classes.paper} style={{ borderBottom: '2px solid green',boxShadow:'2px 2px 5px green' }}>
 
             <div className={classestype.root}>
               <Typography variant="subtitle2" gutterBottom style={{ color: 'green' }}>
                 <FavoriteIcon style={{ fontSize: 40 }} />
               </Typography>
-              <Typography variant="h5" gutterBottom style={{ color: 'green', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-                <NumberFormat value={apidatacountryspec.recovered} displayType={'text'} thousandSeparator={true} />
+              <Typography variant="h5" gutterBottom style={{ color: 'green', fontWeight: 'bolder' , fontFamily: 'Roboto Slab'}}>
+              <NumberFormat value={apidata.total_recovered} displayType={'text'} thousandSeparator={true} />
               </Typography>
               <Typography variant="subtitle2" gutterBottom style={{ color: 'green', fontSize: 16, fontFamily: 'Merriweather ' }}>
                 TOTAL RECOVERED
             </Typography>
-              <Typography variant="button" display="block" gutterBottom style={{ color: 'green' }}>
+              <Typography variant="button" display="block" gutterBottom style={{ color: 'green'}}>
                 {date}
               </Typography>
             </div>
@@ -193,21 +177,19 @@ export default function Country({ countryName }) {
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          <Paper className={classes.paper} style={{ borderBottom: '2px solid red', boxShadow: '2px 2px 5px red' }}>
+          <Paper className={classes.paper} style={{ borderBottom: '2px solid red',boxShadow:'2px 2px 5px red' }}>
 
             <div className={classestype.root}>
-
               <Typography variant="subtitle2" gutterBottom style={{ color: 'red' }}>
                 <LocalHotelIcon style={{ fontSize: 40 }} />
               </Typography>
-              <Typography variant="h5" gutterBottom style={{ color: 'red', fontWeight: 'bolder', fontFamily: 'Roboto Slab' }}>
-
-                <NumberFormat value={apidatacountryspec.deaths} displayType={'text'} thousandSeparator={true} />
+              <Typography variant="h5" gutterBottom style={{ color: 'red', fontWeight: 'bolder' , fontFamily: 'Roboto Slab'}}>
+              <NumberFormat value={apidata.total_deaths} displayType={'text'} thousandSeparator={true} />
               </Typography>
               <Typography variant="subtitle2" gutterBottom style={{ color: 'red', fontSize: 16, fontFamily: 'Merriweather ' }}>
                 TOTAL DEATH
             </Typography>
-              <Typography variant="button" display="block" gutterBottom style={{ color: 'red' }}>
+              <Typography variant="button" display="block" gutterBottom style={{ color: 'red'}}>
                 {date}
               </Typography>
             </div>
@@ -216,9 +198,7 @@ export default function Country({ countryName }) {
         </Grid>
 
       </Grid>
-
-      <Countrychart countryName={countryName} population={apidatacountryspec.population} Infected={apidatacountryspec.cases} Death={apidatacountryspec.deaths} Recovered={apidatacountryspec.recovered} />
-
+      <Worldchart/>
     </div>
   );
 }

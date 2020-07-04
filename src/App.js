@@ -1,21 +1,44 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 
 //import components
 import Header from './Components/Header';
-import Maingrid from './Components/Maingrid'
+import World from './Components/World'
 import GlobalcontextProvider from './Global/Globalcontext';
-import Country  from './Components/Country';
+import Dropdown from './Components/Dropdown'
+import Footer from './Components/Footer';
+import Safty from './Components/Safty';
+import Corona from './Components/Corona';
 
 function App() {
-  return (
+  const [value, setValue] = useState(0);
+  
+  if(value==0){
+  return(
+    
     <GlobalcontextProvider >
-
+      
       <Header />
-      {/* <Maingrid /> */}
-      <Country></Country>
+      <Corona/>
+      
+      <World />
+      <Safty/>
+      <Footer value={value} setValue={setValue}/>
     </GlobalcontextProvider>
   );
+}
+  else{
+    return(
+    <GlobalcontextProvider >
+      <Header />
+      <Corona/>
+      
+      <Dropdown />
+      <Safty/>
+      <Footer value={value} setValue={setValue}/>
+    </GlobalcontextProvider>
+  )  
+}
 }
 
 export default App;

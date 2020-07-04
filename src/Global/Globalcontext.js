@@ -7,7 +7,9 @@ export const Globalcontext = createContext("");
 const GlobalcontextProvider = ({ children }) => {
 
     const [apidata,setapiData] = useState('');
+    const [apidatacountry,setapiDatacountry] = useState([{}]);
     
+  
     //globaldata
     useEffect(() => {
         async function Fetchdata() {
@@ -27,8 +29,12 @@ const GlobalcontextProvider = ({ children }) => {
     useEffect(()=>{
         async function FetchCountrydata(){
 
-            let counrtyresponse= await fetch('');
+            //overallcountry
+            let counrtyresponse= await fetch('https://corona.lmao.ninja/v2/countries?yesterday&sort');
+            const countdata = await counrtyresponse.json();
             
+            // console.log(countdata)
+            setapiDatacountry(countdata);
         }
         FetchCountrydata();
     },[]);
@@ -37,7 +43,7 @@ const GlobalcontextProvider = ({ children }) => {
 
     return (
         <Globalcontext.Provider value={
-            apidata
+         {apidata,apidatacountry}    
         } >
             {children}
         </Globalcontext.Provider>
