@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 export default function Footer(props) {
   const classes = useStyles();
 
-  if (props.value == 0) {
+  if (props.value === 0) {
     return (
 
       <div className={classes.div}>

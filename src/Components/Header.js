@@ -29,8 +29,8 @@ export default function Header() {
                     <Typography variant="h6" className={classes.title}>
                         Covid-19
                      </Typography>
-                    <img src={image} width='35' height='35'  ></img>
-                    <a href='https://github.com/A-Rehman01/covid-19-app' target='_blank' ><GitHubIcon style={{fontSize:32,color:'white', marginLeft:15}}/></a>
+                    <img src={image} width='35' height='35' alt="github" ></img>
+                    <a href='https://github.com/A-Rehman01/covid-19-app' target='_blank' rel="noopener noreferrer" ><GitHubIcon style={{fontSize:32,color:'white', marginLeft:15}}/></a>
                 </Toolbar>
             </AppBar>
         </div>

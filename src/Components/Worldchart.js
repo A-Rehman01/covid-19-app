@@ -54,7 +54,7 @@ function Worldchart() {
     }, [])
 
     //if data is not fetched
-    if (dailydata == '') {
+    if (dailydata === '') {
         return (
             <div className="worldcharts">
                 <h2 className="grapheading">Graphical View
